@@ -264,6 +264,26 @@ class DefOrDclFormatterTest extends AbstractFormatterTest {
       |}"""
   }
 
+  {
+    implicit val formattingPreferences =
+        FormattingPreferences.setPreference(AlignParameters, false)
+        .setPreference(DoubleIndentClassDeclaration, true)
+
+    """object Foo {
+      |  case class Bar(alpha: String,
+      |                 beta: String,
+      |                 gamma: String) extends Baz {
+      |  }
+      |}""" ==>
+    """object Foo {
+      |  case class PersonSignUpRequest(
+      |      alpha: String,
+      |      beta: String,
+      |      gamma: String) extends Baz {
+      |  }
+      |}"""
+  }
+
   """def foo(n, m)""" ==>
   """def foo(n, m)"""
 
